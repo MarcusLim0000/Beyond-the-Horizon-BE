@@ -1,0 +1,12 @@
+{
+  "name": "beyond-the-horizon-be",
+  "version": "1.0.0",
+  "description": "A full stack MERN app to plan travel and holidays!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
