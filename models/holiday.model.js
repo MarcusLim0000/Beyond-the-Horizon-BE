@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const holidaySchema = mongoose.Schema({
 
     location: {
-
+        
     },
     flight: {
 
