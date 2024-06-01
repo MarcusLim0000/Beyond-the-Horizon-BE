@@ -8,11 +8,14 @@ app.use(cors());
 app.use(express.json());
 
 //middleware here for checking token
+app.use(require('./config/checkToken'))
 
 //api use here
+//app.use('./api/users', require('./routes/user.routes'))
 
 //protected routes here
-
+const ensureLoggedIn = require('./config/ensureLoggedIn')
+//const holiday = require('./routes/holiday.routes')
 //defining port and listen
 
 const PORT = process.env.PORT;
