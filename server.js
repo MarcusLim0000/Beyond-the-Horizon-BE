@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 require('./config/database');
+// const uploadRoute = require('./controllers/uploadController')
 
 const app = express();
 app.use(cors());
@@ -11,7 +12,7 @@ app.use(express.json());
 app.use(require('./config/checkToken'))
 
 //api use here
-//app.use('./api/users', require('./routes/user.routes'))
+app.use('/api/users', require('./routes/user.routes'));
 
 //protected routes here
 const ensureLoggedIn = require('./config/ensureLoggedIn')
