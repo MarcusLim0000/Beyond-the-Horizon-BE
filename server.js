@@ -16,8 +16,9 @@ app.use('/api/users', require('./routes/user.routes'));
 
 //protected routes here
 const ensureLoggedIn = require('./config/ensureLoggedIn')
+const flightRoutes = require('./routes/form.routes')
+app.use('/api/flight', ensureLoggedIn, flightRoutes)
 //const holiday = require('./routes/holiday.routes')
-//defining port and listen
 
 const PORT = process.env.PORT;
 
