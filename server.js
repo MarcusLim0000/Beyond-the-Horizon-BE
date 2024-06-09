@@ -16,8 +16,12 @@ app.use('/api/users', require('./routes/user.routes'));
 
 //protected routes here
 const ensureLoggedIn = require('./config/ensureLoggedIn')
-const flightRoutes = require('./routes/form.routes')
+const flightRoutes = require('./routes/flightForm.routes')
+const hotelRoutes = require('./routes/hotelForm.routes')
+const eventRoutes = require('./routes/eventForm.routes')
 app.use('/api/flight', ensureLoggedIn, flightRoutes)
+app.use('/api/hotel', ensureLoggedIn, hotelRoutes)
+app.use('/api/event', ensureLoggedIn, eventRoutes)
 //const holiday = require('./routes/holiday.routes')
 
 const PORT = process.env.PORT;
