@@ -1,25 +1,32 @@
 const mongoose = require("mongoose");
-//const User = require('./user.models')
 
-const holidaySchema = mongoose.Schema({
-
-    location: {
-        
+const holidaySchema = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      require: true,
     },
-    flight: {
-
+    country: {
+      type: String,
+      required: true,
     },
-    hotel: {
-
+    startDate: {
+      type: Date,
+      required: true,
     },
-    event: {
-
-    }
-
-},
-
-{timestamps:true}
-
+    endDate: {
+      type: Date,
+      required: true,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
 );
 
 const Holiday = mongoose.model("Holiday", holidaySchema);
