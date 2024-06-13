@@ -12,4 +12,20 @@ async function createEvent(req, res) {
     }
   }
 
-  module.exports = { createEvent };
+  async function getEvent(req, res) {
+    const { id: holidayId } = req.params;
+  
+    if (!holidayId) {
+      return res.status(400).json({ error: "Holiday ID is required" });
+    }
+  
+    try {
+      const events = await Event.find({ holidayId });
+      return res.status(200).json(events);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  module.exports = { createEvent, getEvent };
