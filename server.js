@@ -1,32 +1,28 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
-require('./config/database');
-// const uploadRoute = require('./controllers/uploadController')
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+require("./config/database");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-//middleware here for checking token
-app.use(require('./config/checkToken'))
+app.use(require("./config/checkToken"));
 
-//api use here
-app.use('/api/users', require('./routes/user.routes'));
+app.use("/api/users", require("./routes/user.routes"));
 
-//protected routes here
-const ensureLoggedIn = require('./config/ensureLoggedIn')
-const flightRoutes = require('./routes/flightForm.routes')
-const hotelRoutes = require('./routes/hotelForm.routes')
-const eventRoutes = require('./routes/eventForm.routes')
-const holidayRoutes = require('./routes/holidayForm.routes')
-app.use('/api/holiday', ensureLoggedIn, holidayRoutes)
-app.use('/api/flight', ensureLoggedIn, flightRoutes)
-app.use('/api/hotel', ensureLoggedIn, hotelRoutes)
-app.use('/api/event', ensureLoggedIn, eventRoutes)
+const ensureLoggedIn = require("./config/ensureLoggedIn");
+const flightRoutes = require("./routes/flightForm.routes");
+const hotelRoutes = require("./routes/hotelForm.routes");
+const eventRoutes = require("./routes/eventForm.routes");
+const holidayRoutes = require("./routes/holidayForm.routes");
+app.use("/api/holiday", ensureLoggedIn, holidayRoutes);
+app.use("/api/flight", ensureLoggedIn, flightRoutes);
+app.use("/api/hotel", ensureLoggedIn, hotelRoutes);
+app.use("/api/event", ensureLoggedIn, eventRoutes);
 
 const PORT = process.env.PORT;
 
-app.listen(PORT, function() {
-    console.log(`Backend started on port ${PORT}`)
+app.listen(PORT, function () {
+  console.log(`Backend started on port ${PORT}`);
 });

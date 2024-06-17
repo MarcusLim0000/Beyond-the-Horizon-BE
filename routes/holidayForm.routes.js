@@ -3,16 +3,11 @@ const router = express.Router();
 const holidayCtrl = require("../controllers/holidayForm.controller");
 
 router.post("/create", holidayCtrl.createHoliday);
-//http://localhost:3000/api/holiday/create
 
-router.get('/:id', holidayCtrl.getHoliday);
-//http://localhost:3000/api/holiday/:id
+router.get("/:id", holidayCtrl.getHoliday);
 
-router.delete('/delete/:id', holidayCtrl.deleteHoliday);
-//http://localhost:3000/api/holiday/delete/:id
+router.delete("/delete/:id", holidayCtrl.deleteHoliday);
 
-// Update route for holidays
-router.put('/update/:id', holidayCtrl.updateHoliday);
-//http://localhost:3000/api/holiday/update/:id
+router.put("/update/:id", holidayCtrl.updateHoliday);
 
 module.exports = router;
