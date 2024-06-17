@@ -3,16 +3,11 @@ const router = express.Router();
 const eventCtrl = require("../controllers/eventForm.controller");
 
 router.post("/create", eventCtrl.createEvent);
-//http://localhost:3000/api/event/create
 
-router.get('/:id', eventCtrl.getEvent);
-//http://localhost:3000/api/event/:id
+router.get("/:id", eventCtrl.getEvent);
 
-router.delete('/delete/:id', eventCtrl.deleteEvent);
-//http://localhost:3000/api/event/delete/:id
+router.delete("/delete/:id", eventCtrl.deleteEvent);
 
-// Update route for events
-router.put('/update/:id', eventCtrl.updateEvent);
-//http://localhost:3000/api/event/update/:id
+router.put("/update/:id", eventCtrl.updateEvent);
 
 module.exports = router;

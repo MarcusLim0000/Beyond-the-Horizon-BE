@@ -2,17 +2,12 @@ const express = require("express");
 const router = express.Router();
 const flightCtrl = require("../controllers/flightForm.controller");
 
-router.post("/create", flightCtrl.createFlight);  
-//http://localhost:3000/api/flight/create
+router.post("/create", flightCtrl.createFlight);
 
-router.get('/:id', flightCtrl.getFlights);
-//http://localhost:3000/api/flight/:id
+router.get("/:id", flightCtrl.getFlights);
 
-router.delete('/delete/:id', flightCtrl.deleteFlight);
-//http://localhost:3000/api/flight/delete/:id
+router.delete("/delete/:id", flightCtrl.deleteFlight);
 
-// New route for updating a flight
-router.put('/update/:id', flightCtrl.updateFlight);
-//http://localhost:3000/api/flight/update/:id
+router.put("/update/:id", flightCtrl.updateFlight);
 
 module.exports = router;

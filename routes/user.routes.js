@@ -1,13 +1,9 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const userCtrl = require('../controllers/user.controller')
+const userCtrl = require("../controllers/user.controller");
 
-// POST /api/users
-router.post('/', userCtrl.create);
-//http://localhost:3000/api/users/
+router.post("/", userCtrl.create);
 
-// POST /api/users/signin
-router.post('/sign-in', userCtrl.signIn);
-//http://localhost:3000/api/users/sign-in
+router.post("/sign-in", userCtrl.signIn);
 
 module.exports = router;
