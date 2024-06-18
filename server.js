@@ -16,10 +16,13 @@ const flightRoutes = require("./routes/flightForm.routes");
 const hotelRoutes = require("./routes/hotelForm.routes");
 const eventRoutes = require("./routes/eventForm.routes");
 const holidayRoutes = require("./routes/holidayForm.routes");
+const imageRoutes = require("./routes/images.routes");
+
 app.use("/api/holiday", ensureLoggedIn, holidayRoutes);
 app.use("/api/flight", ensureLoggedIn, flightRoutes);
 app.use("/api/hotel", ensureLoggedIn, hotelRoutes);
 app.use("/api/event", ensureLoggedIn, eventRoutes);
+app.use("/api/upload", ensureLoggedIn, imageRoutes);
 
 const PORT = process.env.PORT;
 
