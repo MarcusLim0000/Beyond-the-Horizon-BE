@@ -14,7 +14,7 @@ Event Management: Add, read, update, and delete event details for each holiday.
 Technologies Used:
 
 Backend: Node.js, Express
-Database: MongoDB
+Database: MongoDB, Multer, Cloudinary
 Authentication: JWT (JSON Web Token)
 Environment Variables: dotenv
 
@@ -24,14 +24,11 @@ Prerequisites
 Node.js
 npm (Node Package Manager)
 MongoDB
+Cloudinary
 
 Steps
-Clone the Repository:
+Clone the Repository
 
-bash
-Copy code
-git clone https://github.com/your-username/holiday-planner-backend.git
-cd holiday-planner-backend
 Install Dependencies:
 
 bash
@@ -42,10 +39,12 @@ Create a .env file in the root directory and add the following environment varia
 
 env
 Copy code
-MONGO_URI=your_mongodb_connection_string
-SECRET=your_jwt_secret
-PORT=5000
-Run the Server:
+DATABASE_URL=(MongoDB URL here)
+PORT=(PORT number)
+SECRET=(JWT secret)
+CLOUDINARY_CLOUD_NAME=d(Cloudinary database name)
+CLOUDINARY_API_KEY=(Cloudinary API key)
+CLOUDINARY_SECRET_KEY=(Cloudinary secret key)
 
 bash
 Copy code
@@ -97,6 +96,12 @@ PUT /api/events/
 DELETE /api/events/
 : Delete an existing event.
 
+Images Routes
+
+POST /api/upload/:holidayId: Add a new image for a holiday.
+GET /api/upload/:holidayId
+: Get all images for a specific holiday.
+
 License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
@@ -104,3 +109,4 @@ Acknowledgements
 Express for the web framework.
 MongoDB for the database.
 JWT for JSON Web Token authentication.
+Cloudinary for image storage.
