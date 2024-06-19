@@ -101,6 +101,7 @@ Images Routes
 POST /api/upload/:holidayId: Add a new image for a holiday.
 GET /api/upload/:holidayId
 : Get all images for a specific holiday.
+DELETE: Delete an image from both mongoDB and Cloudinary.
 
 License
 This project is licensed under the MIT License. See the LICENSE file for details.
