@@ -1,27 +1,28 @@
-const Image = require("../models/images.model");
-const cloudinary = require("../cloudinary/config");
-const fs = require("fs");
+import Image from "../models/images.model.js"
+import cloudindary from "../cloudinary/config.js"
+import fs from "fs"
 
-const uploadImages = async (req, res) => {
+const cloudinary = cloudindary;
+
+export const uploadImages = async (req, res) => {
   const { holidayId } = req.params;
   if (!req.files) {
     return res.status(400).send("No files uploaded.");
   }
 
   try {
-    const uploadPromises = req.files.map((file) => {
-      return cloudinary.uploader.upload(file.path).then((result) => {
-        fs.unlink(file.path, (err) => {
-          if (err) {
-            console.error("Error deleting file:", err);
-          }
-        });
-        return {
-          url: result.secure_url,
-          public_id: result.public_id,
-          holidayId,
-        };
+    const uploadPromises = req.files.map(async (file) => {
+      const result = await cloudinary.uploader.upload(file.path);
+      fs.unlink(file.path, (err) => {
+        if (err) {
+          console.error("Error deleting file:", err);
+        }
       });
+      return {
+        url: result.secure_url,
+        public_id: result.public_id,
+        holidayId,
+      };
     });
 
     const images = await Promise.all(uploadPromises);
@@ -41,7 +42,7 @@ const uploadImages = async (req, res) => {
   }
 };
 
-const deleteImage = async (req, res) => {
+export const deleteImage = async (req, res) => {
   const { imageId } = req.params;
 
   try {
@@ -61,7 +62,7 @@ const deleteImage = async (req, res) => {
   }
 };
 
-const getImages = async (req, res) => {
+export const getImages = async (req, res) => {
   const { holidayId } = req.params;
   try {
     const images = await Image.find({ holidayId });
@@ -72,4 +73,3 @@ const getImages = async (req, res) => {
   }
 };
 
-module.exports = { uploadImages, deleteImage, getImages };

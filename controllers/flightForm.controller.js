@@ -1,6 +1,6 @@
-const Flight = require("../models/flight.model");
+import Flight from "../models/flight.model.js";
 
-async function createFlight(req, res) {
+export async function createFlight(req, res) {
   try {
     const flight = await Flight.create({
       ...req.body,
@@ -13,7 +13,7 @@ async function createFlight(req, res) {
   }
 }
 
-async function getFlights(req, res) {
+export async function getFlights(req, res) {
   const { id: holidayId } = req.params;
 
   if (!holidayId) {
@@ -29,7 +29,7 @@ async function getFlights(req, res) {
   }
 }
 
-async function updateFlight(req, res) {
+export async function updateFlight(req, res) {
   try {
     const flight = await Flight.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -42,7 +42,7 @@ async function updateFlight(req, res) {
   }
 }
 
-async function deleteFlight(req, res) {
+export async function deleteFlight(req, res) {
   try {
     const { id } = req.params;
     const deletedFlight = await Flight.findByIdAndDelete(id);
@@ -55,5 +55,3 @@ async function deleteFlight(req, res) {
     return res.status(500).json({ error: error.message });
   }
 }
-
-module.exports = { createFlight, getFlights, updateFlight, deleteFlight };

@@ -1,13 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const holidayCtrl = require("../controllers/holidayForm.controller");
+import { Router } from "express";
+import { createHoliday, getHoliday, deleteHoliday, updateHoliday } from "../controllers/holidayForm.controller.js";
 
-router.post("/create", holidayCtrl.createHoliday);
+const router = Router();
 
-router.get("/:id", holidayCtrl.getHoliday);
+router.post("/create", createHoliday);
+router.get("/:id", getHoliday);
+router.delete("/delete/:id", deleteHoliday);
+router.put("/update/:id", updateHoliday);
 
-router.delete("/delete/:id", holidayCtrl.deleteHoliday);
-
-router.put("/update/:id", holidayCtrl.updateHoliday);
-
-module.exports = router;
+export default router;

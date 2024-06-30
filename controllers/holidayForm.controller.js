@@ -1,6 +1,6 @@
-const Holiday = require("../models/holiday.model");
+import Holiday from "../models/holiday.model.js";
 
-async function createHoliday(req, res) {
+export async function createHoliday(req, res) {
   try {
     const holiday = await Holiday.create({
       ...req.body,
@@ -13,7 +13,7 @@ async function createHoliday(req, res) {
   }
 }
 
-async function getHoliday(req, res) {
+export async function getHoliday(req, res) {
   try {
     const holiday = await Holiday.find({ createdBy: req.user._id });
     return res.status(200).json(holiday);
@@ -23,7 +23,7 @@ async function getHoliday(req, res) {
   }
 }
 
-async function updateHoliday(req, res) {
+export async function updateHoliday(req, res) {
   try {
     const holiday = await Holiday.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -36,7 +36,7 @@ async function updateHoliday(req, res) {
   }
 }
 
-async function deleteHoliday(req, res) {
+export async function deleteHoliday(req, res) {
   try {
     const { id } = req.params;
     const deletedHoliday = await Holiday.findByIdAndDelete(id);
@@ -49,5 +49,3 @@ async function deleteHoliday(req, res) {
     return res.status(500).json({ error: error.message });
   }
 }
-
-module.exports = { createHoliday, getHoliday, updateHoliday, deleteHoliday };

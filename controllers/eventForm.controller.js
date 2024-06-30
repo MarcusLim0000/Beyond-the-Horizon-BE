@@ -1,6 +1,6 @@
-const Event = require("../models/event.model");
+import Event from "../models/event.model.js";
 
-async function createEvent(req, res) {
+export async function createEvent(req, res) {
   try {
     const event = await Event.create({
       ...req.body,
@@ -13,7 +13,7 @@ async function createEvent(req, res) {
   }
 }
 
-async function getEvent(req, res) {
+export async function getEvent(req, res) {
   const { id: holidayId } = req.params;
 
   if (!holidayId) {
@@ -29,7 +29,7 @@ async function getEvent(req, res) {
   }
 }
 
-async function updateEvent(req, res) {
+export async function updateEvent(req, res) {
   try {
     const event = await Event.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -42,12 +42,12 @@ async function updateEvent(req, res) {
   }
 }
 
-async function deleteEvent(req, res) {
+export async function deleteEvent(req, res) {
   try {
     const { id } = req.params;
     const deletedEvent = await Event.findByIdAndDelete(id);
     if (!deletedEvent) {
-      return res.status(404).json({ error: "Form not found" });
+      return res.status(404).json({ error: "Event not found" });
     }
     res.json({ message: "Event deleted successfully" });
   } catch (error) {
@@ -55,5 +55,3 @@ async function deleteEvent(req, res) {
     return res.status(500).json({ error: error.message });
   }
 }
-
-module.exports = { createEvent, getEvent, updateEvent, deleteEvent };

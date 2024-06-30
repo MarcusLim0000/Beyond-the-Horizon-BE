@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const holidaySchema = mongoose.Schema(
+const holidaySchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
     },
     country: {
       type: String,
@@ -31,4 +31,4 @@ const holidaySchema = mongoose.Schema(
 
 const Holiday = mongoose.model("Holiday", holidaySchema);
 
-module.exports = Holiday;
+export default Holiday;

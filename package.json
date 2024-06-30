@@ -1,6 +1,7 @@
 {
   "name": "beyond-the-horizon-be",
   "version": "1.0.0",
+  "type": "module",
   "description": "A full stack MERN app to plan travel and holidays!",
   "main": "server.js",
   "scripts": {

@@ -1,13 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const eventCtrl = require("../controllers/eventForm.controller");
+import { Router } from "express";
+import { createEvent, getEvent, deleteEvent, updateEvent } from "../controllers/eventForm.controller.js";
 
-router.post("/create", eventCtrl.createEvent);
+const router = Router();
 
-router.get("/:id", eventCtrl.getEvent);
+router.post("/create", createEvent);
+router.get("/:id", getEvent);
+router.delete("/delete/:id", deleteEvent);
+router.put("/update/:id", updateEvent);
 
-router.delete("/delete/:id", eventCtrl.deleteEvent);
-
-router.put("/update/:id", eventCtrl.updateEvent);
-
-module.exports = router;
+export default router;

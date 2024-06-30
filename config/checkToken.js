@@ -1,10 +1,10 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
-module.exports = function (req, res, next) {
+export default function (req, res, next) {
   let token = req.get("Authorization") || req.query.token;
   if (token) {
     token = token.replace("Bearer ", "");
-    jwt.verify(token, process.env.SECRET, function (err, decoded) {
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
       req.user = err ? null : decoded.user;
       req.exp = err ? null : new Date(decoded.exp * 1000);
       return next();
@@ -13,4 +13,4 @@ module.exports = function (req, res, next) {
     req.user = null;
     return next();
   }
-};
+}

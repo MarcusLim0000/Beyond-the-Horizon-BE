@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const flightSchema = mongoose.Schema(
+const flightSchema = new mongoose.Schema(
   {
     flightNumber: {
       type: String,
@@ -44,4 +44,4 @@ const flightSchema = mongoose.Schema(
 
 const Flight = mongoose.model("Flight", flightSchema);
 
-module.exports = Flight;
+export default Flight;

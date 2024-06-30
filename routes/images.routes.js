@@ -1,12 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const upload = require("../multer/multer.mw");
-const imgCtrl = require("../controllers/images.controller");
+import { Router } from "express";
+import upload from "../multer/multer.mw.js";
+import { uploadImages, deleteImage, getImages } from "../controllers/images.controller.js";
 
-router.post("/:holidayId", upload.array("images", 10), imgCtrl.uploadImages);
+const router = Router();
 
-router.delete("/:imageId", imgCtrl.deleteImage);
+router.post("/:holidayId", upload.array("images", 10), uploadImages);
+router.delete("/:imageId", deleteImage);
+router.get("/:holidayId", getImages);
 
-router.get("/:holidayId", imgCtrl.getImages);
-
-module.exports = router;
+export default router;

@@ -1,6 +1,6 @@
-const Hotel = require("../models/hotel.model");
+import Hotel from "../models/hotel.model.js";
 
-async function createHotel(req, res) {
+export async function createHotel(req, res) {
   try {
     const hotel = await Hotel.create({
       ...req.body,
@@ -13,7 +13,7 @@ async function createHotel(req, res) {
   }
 }
 
-async function getHotel(req, res) {
+export async function getHotel(req, res) {
   const { id: holidayId } = req.params;
 
   if (!holidayId) {
@@ -29,7 +29,7 @@ async function getHotel(req, res) {
   }
 }
 
-async function updateHotel(req, res) {
+export async function updateHotel(req, res) {
   try {
     const hotel = await Hotel.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -42,7 +42,7 @@ async function updateHotel(req, res) {
   }
 }
 
-async function deleteHotel(req, res) {
+export async function deleteHotel(req, res) {
   try {
     const { id } = req.params;
     const deletedHotel = await Hotel.findByIdAndDelete(id);
@@ -55,5 +55,3 @@ async function deleteHotel(req, res) {
     return res.status(500).json({ error: error.message });
   }
 }
-
-module.exports = { createHotel, getHotel, updateHotel, deleteHotel };

@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const User = require("../models/user.model");
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import User from "../models/user.model.js";
 
-async function create(req, res) {
+export async function create(req, res) {
   try {
     const newUserDetails = req.body;
     const newUser = await User.create(newUserDetails);
@@ -13,7 +13,7 @@ async function create(req, res) {
   }
 }
 
-async function signIn(req, res) {
+export async function signIn(req, res) {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) throw new Error();
@@ -29,7 +29,3 @@ function createJWT(user) {
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: "24h" });
 }
 
-module.exports = {
-  create,
-  signIn,
-};
