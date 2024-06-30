@@ -15,7 +15,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: "https://beyond-the-horizon-fe.vercel.app/",
+  origin: "https://beyond-the-horizon-fe.vercel.app",
 }));
 
 app.use(express.json());
