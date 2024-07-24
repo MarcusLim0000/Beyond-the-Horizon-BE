@@ -14,9 +14,7 @@ import imageRoutes from "./routes/images.routes.js";
 dotenv.config();
 
 const app = express();
-app.use(cors({
-  origin: "https://beyond-the-horizon-fe.vercel.app",
-}));
+app.use(cors());
 
 app.use(express.json());
 
